@@ -18,6 +18,8 @@ H3 is a video model, but its native image is a single frame, and ComfyUI doesn't
 
 **Fizgig H3 Still Latent** makes a true one-frame latent, and **Fizgig H3 Still Decode** decodes it cleanly. Both come from how Fizgig renders H3 still previews.
 
+**What about the dedicated single-frame VAE?** There's a separate H3 single-frame VAE (`minimax_h3_t1_image_vae_step1597_int8_convrot.safetensors`). In our tests it's slower and softer, with less skin detail. Fizgig H3 Still Latent and Still Decode are faster and keep the detail, so there's no reason to use it with these nodes.
+
 ## How do I install it?
 
 ```
