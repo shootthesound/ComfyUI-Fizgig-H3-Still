@@ -51,6 +51,14 @@ Model files, all from [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/Mi
 - `text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors`
 - `vae/minimax_h3_video_vae_int8_convrot.safetensors` (the fp16 VAE works too)
 
+## Can it edit images?
+
+Yes, to a degree. MiniMax H3 has some editing ability, and [`example_workflows/Edit_Workflow_example.json`](example_workflows/) uses it: load a photo, refer to it as `<Picture 1>` in the prompt and describe the change, for example *"<Picture 1> and Change the dress to red. Keep her identity the same."* **MiniMax H3 Reference to Video** supplies the conditioning, and the two Fizgig nodes render and decode the result as a single still.
+
+H3 isn't built as an edit model, so treat this as experimental: some edits land better than others.
+
+The workflow uses the same model files and Turbo LoRA as the text-to-image example, plus **AILab_ImageResize** from [ComfyUI-RMBG](https://github.com/1038lab/ComfyUI-RMBG) to size the input photo.
+
 ## What sizes can it do?
 
 Any width and height that are multiples of 32. The decode is tiled, so large images don't need a large card. It decodes a few tiles at a time, or one at a time when VRAM is tight.
