@@ -5,6 +5,10 @@
 
 Two nodes that make **MiniMax H3** render true single-frame stills in ComfyUI: crisp, clean images at any size, with no banding. No extra models, no LoRA.
 
+![Fizgig H3 Still Decode (left) vs the stock VAE Decode (right), same seed](assets/comparison.png)
+
+*Left: Fizgig H3 Still Decode. Right: the stock VAE Decode. Same seed, 2144×1216.*
+
 ## Why do I need it?
 
 H3 is a video model, but its native image is a single frame, and ComfyUI doesn't render one properly:
