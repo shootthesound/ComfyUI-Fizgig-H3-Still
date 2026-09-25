@@ -1,0 +1,76 @@
+# Fizgig H3 Still
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/lorasandlenses)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+Two nodes that make **MiniMax H3** render true single-frame stills in ComfyUI: crisp, clean images at any size, with no banding. No extra models, no LoRA.
+
+## Why do I need it?
+
+H3 is a video model, but its native image is a single frame, and ComfyUI doesn't render one properly:
+
+- The stock H3 latent is at least 5 frames long, so a "still" is really the first frame of a short clip.
+- Decoding a lone frame with the stock **VAE Decode** gives banded, streaky images.
+
+**Fizgig H3 Still Latent** makes a true one-frame latent, and **Fizgig H3 Still Decode** decodes it cleanly. Both come from how Fizgig renders H3 still previews.
+
+## How do I install it?
+
+```
+cd ComfyUI/custom_nodes
+git clone https://github.com/shootthesound/ComfyUI-Fizgig-H3-Still
+```
+
+Restart ComfyUI. Both nodes are under the **Fizgig** category. No extra Python dependencies. They run on ComfyUI's built-in MiniMax H3 support.
+
+## How do I use it?
+
+Start from any H3 text-to-video graph and change two things:
+
+1. **Fizgig H3 Still Latent** → the sampler's latent input. Keep **MiniMax H3 Image to Video** for its conditioning and leave its LATENT output unconnected. Feed both nodes the same width and height.
+2. **Fizgig H3 Still Decode** in place of **VAE Decode**. Same inputs: the sampler's output and the video VAE.
+
+```
+MiniMax H3 Image to Video (conditioning) ─► BasicGuider ─┐
+Fizgig H3 Still Latent ──────────────────────────────────┼─► SamplerCustomAdvanced ─► Fizgig H3 Still Decode ─► Save Image
+```
+
+## Is there an example workflow?
+
+Yes: [`example_workflows/h3_still_text_to_image.json`](example_workflows/). It renders a 2.5 MP widescreen still, with everything on one canvas (no subgraph). It decodes twice, once with **Fizgig H3 Still Decode** and once with the stock **VAE Decode**, so you can see the difference side by side. Load it from ComfyUI's Templates browser (it appears under this pack's name), or drag the JSON onto the canvas.
+
+It uses the **v4 step-600 EMA** Turbo LoRA from [larryvrh/MiniMax-H3-Turbo-Lora](https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora) (`minimax_h3_turbo_v4_step600_ema.safetensors`) at strength **0.38**, with 20 steps and the `er_sde` sampler. That combination works best for stills. You can also bypass the Turbo LoRA and render without it.
+
+Model files, all from [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3):
+
+- `diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors`
+- `text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors`
+- `vae/minimax_h3_video_vae_int8_convrot.safetensors` (the fp16 VAE works too)
+
+## What sizes can it do?
+
+Any width and height that are multiples of 32. The decode is tiled, so large images don't need a large card. It decodes a few tiles at a time, or one at a time when VRAM is tight.
+
+## Does it work with clips?
+
+The latent node is for stills only. The decode node passes anything longer than one frame straight to the stock decode, so leaving it in a clip workflow does no harm.
+
+## Support
+
+If this tool saves you time or fits into your workflow, consider
+[buying me a coffee](https://buymeacoffee.com/lorasandlenses).
+
+Your support helps me keep developing and maintaining these nodes. Members get
+early access to new builds before public release.
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/lorasandlenses)
+
+## Author
+
+Peter Neill — [ShootTheSound.com](https://shootthesound.com) / [UltrawideWallpapers.net](https://ultrawidewallpapers.net)
+
+Feedback is welcome — open an issue or reach out.
+
+## License
+
+MIT
