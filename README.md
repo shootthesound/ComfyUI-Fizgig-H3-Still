@@ -53,9 +53,9 @@ Model files, all from [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/Mi
 
 ## Can it edit images?
 
-Yes, to a degree. MiniMax H3 has some editing ability, and [`example_workflows/Edit_Workflow_example.json`](example_workflows/) uses it: load a photo, refer to it as `<Picture 1>` in the prompt and describe the change, for example *"<Picture 1> and Change the dress to red. Keep her identity the same."* **MiniMax H3 Reference to Video** supplies the conditioning, and the two Fizgig nodes render and decode the result as a single still.
+Yes. There's also an edit workflow included, [`example_workflows/Edit_Workflow_example.json`](example_workflows/), which shows the model already has some edit abilities. Load a photo, refer to it as `<Picture 1>` in the prompt and describe the change, for example *"<Picture 1> and Change the dress to red. Keep her identity the same."* **MiniMax H3 Reference to Video** supplies the conditioning, and the two Fizgig nodes render and decode the result as a single still.
 
-H3 isn't built as an edit model, so treat this as experimental: some edits land better than others.
+The upscale to 2.5 MP in the edit workflow is intentional: editing seems to work best at that size.
 
 The workflow uses the same model files and Turbo LoRA as the text-to-image example, plus **AILab_ImageResize** from [ComfyUI-RMBG](https://github.com/1038lab/ComfyUI-RMBG) to size the input photo.
 
