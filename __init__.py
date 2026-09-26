@@ -59,7 +59,7 @@ class FizgigH3StillDecode:
     FUNCTION = "decode"
     CATEGORY = "Fizgig"
     DESCRIPTION = ("Decodes an H3 still the way Fizgig's previews do (the frame replicated into a full 5-frame group), "
-                   "without the banding of the stock VAE Decode on a single frame. Use it in place of VAE Decode.")
+                   "with far less banding than the stock VAE Decode on a single frame. Use it in place of VAE Decode.")
 
     def decode(self, vae, samples):
         latent = samples["samples"]

@@ -3,7 +3,7 @@
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/lorasandlenses)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Two nodes that make **MiniMax H3** render true single-frame stills in ComfyUI: crisp, clean images at any size, with no banding. No extra models, no LoRA.
+Two nodes that make **MiniMax H3** render true single-frame stills in ComfyUI: crisp, clean images, at their best from 3 MP up. No extra models.
 
 ![An 8 MP still from the no-Turbo workflow](assets/8mp_no_turbo.png)
 
@@ -69,7 +69,7 @@ The workflow uses the same model files and Turbo LoRA as the text-to-image examp
 
 ## What sizes can it do?
 
-Any width and height that are multiples of 32. The decode is tiled, so large images don't need a large card. It decodes a few tiles at a time, or one at a time when VRAM is tight.
+Any width and height that are multiples of 32, but results are best from **3 MP up**; small images come out noticeably weaker. The decode is tiled, so large images don't need a large card. It decodes a few tiles at a time, or one at a time when VRAM is tight.
 
 ## Does it work with clips?
 
