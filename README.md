@@ -43,9 +43,15 @@ Fizgig H3 Still Latent ───────────────────
 
 ## Is there an example workflow?
 
-Yes: [`example_workflows/h3_still_text_to_image.json`](example_workflows/). It renders a 2.5 MP widescreen still. It decodes twice, once with **Fizgig H3 Still Decode** and once with the stock **VAE Decode**, so you can see the difference side by side. Load it from ComfyUI's Templates browser (it appears under this pack's name), or drag the JSON onto the canvas.
+Yes, several. The main one: [`example_workflows/h3_still_text_to_image.json`](example_workflows/). It renders a 2.5 MP widescreen still. It decodes twice, once with **Fizgig H3 Still Decode** and once with the stock **VAE Decode**, so you can see the difference side by side. Load it from ComfyUI's Templates browser (it appears under this pack's name), or drag the JSON onto the canvas.
 
 It uses the **v4 step-600 EMA** Turbo LoRA from [larryvrh/MiniMax-H3-Turbo-Lora](https://huggingface.co/larryvrh/MiniMax-H3-Turbo-Lora) (`minimax_h3_turbo_v4_step600_ema.safetensors`) at strength **0.38**, with 20 steps and the `er_sde` sampler. That combination works best for stills. You can also bypass the Turbo LoRA and render without it.
+
+For the highest quality, [`example_workflows/h3_still_text_to_image-8MP-NoTurboVersion.json`](example_workflows/) renders an **8 MP** widescreen still with **no Turbo LoRA** (its strength is set to 0), at 50 steps with `er_sde`. It's much slower, but it shows how far the two nodes go:
+
+![An 8 MP still from the no-Turbo workflow](assets/8mp_no_turbo.png)
+
+*8 MP (3872×2176), no Turbo LoRA, 50 steps, Fizgig H3 Still Latent + Still Decode.*
 
 Model files, all from [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3):
 
